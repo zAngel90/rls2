@@ -1,6 +1,6 @@
 // Version: 1.2.0 - Final Trade Redesign
-const API_BASE_URL = 'https://lotus-sells-type-pursuit.trycloudflare.com/api';
-const SERVER_URL = 'https://lotus-sells-type-pursuit.trycloudflare.com';
+const API_BASE_URL = 'https://indicate-medline-ddr-drawings.trycloudflare.com/api';
+const SERVER_URL = 'https://indicate-medline-ddr-drawings.trycloudflare.com';
 
 let CURRENCY_RATES = {
   'USD': { symbol: '$', rate: 1, flag: 'us' },
@@ -354,13 +354,13 @@ function renderSeoInfo() {
       <div class="space-y-6">
         <h1 class="text-3xl font-black text-white uppercase tracking-tight">Comprar Armas y Items de MM2 — Murder Mystery 2</h1>
         <p class="text-white/50 leading-relaxed">
-          Compra las mejores armas y items de Murder Mystery 2 en <span class="text-blue-400 font-bold">PIXEL STORE</span>. Encuentra cuchillos Godly, pistolas Legendary, mascotas y collectibles de MM2 al mejor precio. Entrega segura directa a tu cuenta de Roblox con soporte 24/7.
+          Compra las mejores armas y items de Murder Mystery 2 en <span class="text-brand-yellow font-bold">RLS STORE</span>. Encuentra cuchillos Godly, pistolas Legendary, mascotas y collectibles de MM2 al mejor precio. Entrega segura directa a tu cuenta de Roblox con soporte 24/7.
         </p>
       </div>
 
       <div class="grid md:grid-cols-2 gap-12">
         <div class="space-y-4">
-          <h3 class="text-xl font-bold text-white uppercase">Por qué comprar items de MM2 en PIXEL</h3>
+          <h3 class="text-xl font-bold text-white uppercase">Por qué comprar items de MM2 en RLS</h3>
           <ul class="space-y-4">
             <li class="flex gap-3">
               <div class="w-1.5 h-1.5 rounded-full bg-blue-500 mt-2 shrink-0"></div>
@@ -460,13 +460,13 @@ function renderSeoInfo() {
       <div class="space-y-6">
         <h1 class="text-3xl font-black text-white uppercase tracking-tight">Comprar Roblox Limiteds — Items Exclusivos al Mejor Precio</h1>
         <p class="text-white/50 leading-relaxed">
-          Compra items Limitados de Roblox al mejor precio en <span class="text-blue-400 font-bold">PIXEL STORE</span>. Encuentra Faces, Hats, Accessories y más items exclusivos Limited y Limited U. Envío seguro directo a tu cuenta con soporte 24/7. Necesitas Roblox Premium para recibir Limiteds.
+          Compra items Limitados de Roblox al mejor precio en <span class="text-brand-yellow font-bold">RLS STORE</span>. Encuentra Faces, Hats, Accessories y más items exclusivos Limited y Limited U. Envío seguro directo a tu cuenta con soporte 24/7. Necesitas Roblox Premium para recibir Limiteds.
         </p>
       </div>
 
       <div class="grid md:grid-cols-2 gap-12">
         <div class="space-y-4">
-          <h3 class="text-xl font-bold text-white uppercase">Por qué comprar Limiteds en PIXEL</h3>
+          <h3 class="text-xl font-bold text-white uppercase">Por qué comprar Limiteds en RLS</h3>
           <ul class="space-y-4">
             <li class="flex gap-3">
               <div class="w-1.5 h-1.5 rounded-full bg-blue-500 mt-2 shrink-0"></div>
@@ -550,7 +550,7 @@ function renderSeoInfo() {
       </div>
 
       <div class="pt-10 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-6">
-        <div class="text-white font-black uppercase text-sm">Explora más en PIXEL STORE</div>
+        <div class="text-white font-black uppercase text-sm">Explora más en RLS STORE</div>
         <div class="flex gap-4">
           <button onclick="window.parent.postMessage({ action: 'navigateTo', url: '/catalog/robux' }, '*')" class="text-xs font-bold text-blue-400 hover:text-blue-300 transition-colors bg-transparent border-none cursor-pointer">Comprar Robux →</button>
           <a href="?game=mm2" class="text-xs font-bold text-blue-400 hover:text-blue-300 transition-colors">Items de MM2 →</a>
