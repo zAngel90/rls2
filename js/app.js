@@ -1600,7 +1600,7 @@ document.getElementById('robloxUserInput').addEventListener('input', (e) => {
 
       if (data.success && data.data && data.data.length > 0) {
         resultsDiv.innerHTML = data.data.map(user => {
-          const avatar = user.avatarUrl.startsWith('http') ? user.avatarUrl : `${SERVER_URL}${user.avatarUrl}`;
+          const avatar = user.avatarUrl ? (user.avatarUrl.startsWith('http') ? user.avatarUrl : `${SERVER_URL}${user.avatarUrl}`) : `${SERVER_URL}/api/users/avatar/${user.id}`;
           return `
             <div class="user-result-item" onclick="selectRobloxUser('${user.id}', '${user.name}', '${user.displayName}')">
               <img src="${avatar}" class="user-result-avatar" alt="">
@@ -1885,7 +1885,7 @@ document.getElementById('tradeRobloxInput').addEventListener('input', (e) => {
       if (data.success && data.data && data.data.length > 0) {
         resultsDiv.innerHTML = data.data.map(user => `
             <div class="user-result-item" onclick="selectTradeUser('${user.id}', '${user.name}', '${user.displayName}')">
-              <img src="${user.avatarUrl.startsWith('http') ? user.avatarUrl : `${SERVER_URL}${user.avatarUrl}`}" class="user-result-avatar" alt="">
+              <img src="${user.avatarUrl ? (user.avatarUrl.startsWith('http') ? user.avatarUrl : `${SERVER_URL}${user.avatarUrl}`) : `${SERVER_URL}/api/users/avatar/${user.id}`}" class="user-result-avatar" alt="">
               <div class="flex-1">
                 <p class="text-sm font-bold text-white">${user.displayName}</p>
                 <p class="text-[10px] text-white/30">@${user.name}</p>
