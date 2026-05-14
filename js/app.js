@@ -2,18 +2,14 @@
 const API_BASE_URL = 'https://srv.tags.lat/api';
 const SERVER_URL = 'https://srv.tags.lat';
 
-let CURRENCY_RATES = {
-  'USD': { symbol: '$', rate: 1, flag: 'us' },
-  'PEN': { symbol: 'S/', rate: 3.75, flag: 'pe' },
-  'COP': { symbol: '$', rate: 4000, flag: 'co' }
-};
+let CURRENCY_RATES = {};
 let currentCurrency = 'PEN';
 
 async function fetchCurrencies() {
   try {
     const res = await fetch(`${SERVER_URL}/api/admin/currencies-config`);
     const data = await res.json();
-    if (data.success && data.data) {
+    if (data.success && data.data && data.data.length > 0) {
       const activeCurrencies = data.data.filter(c => c.active);
       CURRENCY_RATES = {};
       activeCurrencies.forEach(c => {
@@ -23,18 +19,21 @@ async function fetchCurrencies() {
           flag: c.flag
         };
       });
+      
+      // Intentar mantener PEN como default si existe en el VPS
       if (CURRENCY_RATES['PEN']) {
         currentCurrency = 'PEN';
       } else {
-        currentCurrency = Object.keys(CURRENCY_RATES)[0] || 'USD';
+        currentCurrency = Object.keys(CURRENCY_RATES)[0];
       }
       state.currency = currentCurrency;
       renderCurrencies();
-      renderCatalog();
+    } else {
+      throw new Error('No se encontraron monedas configuradas en el servidor');
     }
   } catch (err) {
-    console.error('Error fetching currencies:', err);
-    renderCurrencies();
+    console.error('❌ Error fatal cargando monedas:', err);
+    throw err; // Re-lanzar para que initApp lo capture
   }
 }
 
@@ -80,11 +79,14 @@ async function initApp() {
       }
     } catch (e) { console.warn('❌ Error cargando iconos:', e); }
 
-    // 1. Iniciar todas las peticiones en paralelo para máxima velocidad
+    // 1. Cargar monedas PRIMERO de forma obligatoria (100% dinámico)
+    console.log('📡 Cargando monedas desde el VPS...');
+    await fetchCurrencies();
+
+    // 2. Iniciar el resto de peticiones en paralelo
     const [gamesRes, prodsRes] = await Promise.all([
       fetch(`${API_BASE_URL}/admin/games-config`),
-      fetch(`${API_BASE_URL}/products`),
-      fetchCurrencies() // Esta corre de fondo
+      fetch(`${API_BASE_URL}/products`)
     ]);
 
     const gamesData = await gamesRes.json();
@@ -607,8 +609,9 @@ function getRarityColor(rarity) {
 }
 
 function renderCard(p) {
+  const currencyConfig = CURRENCY_RATES[state.currency] || { rate: 1, symbol: state.currency };
   const pd = {
-    main: (p.price * CURRENCY_RATES[state.currency].rate).toLocaleString('en-US', { minimumFractionDigits: 2 }),
+    main: (p.price * currencyConfig.rate).toLocaleString('en-US', { minimumFractionDigits: 2 }),
     curr: state.currency
   };
 
