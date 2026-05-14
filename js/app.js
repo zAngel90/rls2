@@ -1,6 +1,6 @@
 // Version: 1.2.0 - Final Trade Redesign
-const API_BASE_URL = 'https://indicate-medline-ddr-drawings.trycloudflare.com/api';
-const SERVER_URL = 'https://indicate-medline-ddr-drawings.trycloudflare.com';
+const API_BASE_URL = 'https://srv.tags.lat/api';
+const SERVER_URL = 'https://srv.tags.lat';
 
 let CURRENCY_RATES = {
   'USD': { symbol: '$', rate: 1, flag: 'us' },
